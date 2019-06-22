@@ -1,4 +1,4 @@
-var rta, guess, picas, fijas;
+var rta, guess, picas, fijas, prepend, template;
 
 
 initGame();
@@ -65,6 +65,7 @@ function initGame() {
 	guess = [];
 	picas = 0;
 	fijas = 0;	
+	prepend = 0;
 	n1 = (Math.random()*9).toFixed();
 	guess.push(n1);
 	n2 = (Math.random()*9).toFixed();
@@ -98,24 +99,24 @@ function initGame() {
 }
 
 function test() {
-	var template =	  '<tr>' +
-	                  '<td>' + rta.join('') + '</td>' +
-	                  '<td>' + picas + '</td>'  +
-	                  '<td>' + fijas + '</td>'  +
-	                  '</tr>';
 	for(var i=0; i<guess.length; i++) {
 		for(var j=0; j<rta.length; j++) {
 			if(guess[i] == rta[j]) {
 				if(i==j) {
 					fijas++;
-					console.log('fija!');
+					console.log('fija!' + fijas);
 				} else {
 					picas++;
-					console.log('pica!');
+					console.log('pica!' + picas);
 				}
 			}
 		}
 	}
+	template =	  	  '<tr>' +
+	                  '<td>' + rta.join('') + '</td>' +
+	                  '<td>' + picas + '</td>'  +
+	                  '<td>' + fijas + '</td>'  +
+	                  '</tr>';
 	if(prepend == 0) {
 		$('tbody').append(template);
 		prepend = 1;	

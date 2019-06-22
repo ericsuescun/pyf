@@ -1,4 +1,4 @@
-var rta, guess, picas, fijas, prepend;
+var rta, guess, picas, fijas, prepend, template;
 
 
 initGame();
@@ -43,7 +43,6 @@ function checkRepeat() {
 			for(var j=0; j<$('input.form-control').val().length; j++ ) {
 				if(i!=j) {
 					if(arry[i] == arry[j]) {
-						console.log('Repeat error');
 						return true;
 					}
 				}
@@ -76,7 +75,6 @@ function initGame() {
 		n4 = (Math.random()*9).toFixed();
 	}
 	guess.push(n4);
-	console.log('Adivina! ' + guess.join(''));
 	$('div#table').append(	'<table class="table table-bordered" id="game">' +
 						'<thead>' +
 						'<th>Número</th>' +
@@ -87,15 +85,11 @@ function initGame() {
 						'</tbody>' +
 						'</table>'
 						);
+	console.log('Adivina! ' + guess.join(''));
 	$('div.container-fluid').addClass('d-none');
 }
 
 function test() {
-	var template =	  '<tr>' +
-	                  '<td>' + rta.join('') + '</td>' +
-	                  '<td>' + picas + '</td>'  +
-	                  '<td>' + fijas + '</td>'  +
-	                  '</tr>';
 	for(var i=0; i<guess.length; i++) {
 		for(var j=0; j<rta.length; j++) {
 			if(guess[i] == rta[j]) {
@@ -107,13 +101,17 @@ function test() {
 			}
 		}
 	}
+	template =	  	  '<tr>' +
+	                  '<td>' + rta.join('') + '</td>' +
+	                  '<td>' + picas + '</td>'  +
+	                  '<td>' + fijas + '</td>'  +
+	                  '</tr>';
 	if(prepend == 0) {
 		$('tbody').append(template);
 		prepend = 1;	
 	} else {
 		$(template).insertBefore('table > tbody > tr:first');
 	}
-	
 	if(fijas == 4) {
 		$('.container-fluid').removeClass('d-none');
 	} else {
