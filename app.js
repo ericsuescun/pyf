@@ -1,4 +1,4 @@
-var rta, guess, picas, fijas, prepend, template;
+var rta, guess, picas, fijas, prepend;
 
 
 initGame();
@@ -101,7 +101,7 @@ function test() {
 			}
 		}
 	}
-	template =	  	  '<tr>' +
+	var template =	  	  '<tr>' +
 	                  '<td>' + rta.join('') + '</td>' +
 	                  '<td>' + picas + '</td>'  +
 	                  '<td>' + fijas + '</td>'  +
